@@ -1,0 +1,38 @@
+.auth-container {
+  width: 300px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+button {
+  padding: 10px 20px;
+  cursor: pointer;
+  background: #007bff;
+  color: white;
+  border: none;
+}
+
+.dashboard {
+  padding: 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #eee;
+  margin: 5px 0;
+}
