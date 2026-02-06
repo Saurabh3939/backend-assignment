@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 8080;
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://primebackend-swart.vercel.app",
+    origin: "https://backend-assignment-1-he1n.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   }),
