@@ -1,0 +1,3 @@
+f5afa04 Remove node_modules
+0f4cef4 Initial commit - Authentication and Dashboard working
+1d47954 Initial commit: Backend and Frontend completed
