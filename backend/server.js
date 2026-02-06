@@ -8,7 +8,8 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://primebackend-swart.vercel.app",
+    origin:
+      "https://primebackend-q92axewyj-saurabh-lendaves-projects.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   }),
