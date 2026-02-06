@@ -16,6 +16,10 @@ app.use(
   }),
 );
 
+app.get("/", (req, res) => {
+  res.send("Server is running successfully!");
+});
+
 app.use("/api/v1/auth", require("./routes/authRoutes"));
 app.use("/api/v1/tasks", require("./routes/taskRoutes"));
 
