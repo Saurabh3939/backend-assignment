@@ -5,10 +5,12 @@ const cors = require("cors");
 
 const app = express();
 
+const PORT = process.env.PORT || 8080;
+
 app.use(express.json());
 app.use(
   cors({
-    origin: "primebackend-swart.vercel.app",
+    origin: "https://primebackend-swart.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   }),
@@ -20,8 +22,8 @@ app.use("/api/v1/tasks", require("./routes/taskRoutes"));
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    app.listen(process.env.PORT || 8080, () => {
-      console.log(`App Is Listening On Port ${process.env.PORT}`);
+    app.listen(PORT || 8080, () => {
+      console.log(`App Is Listening On Port ${PORT}`);
     });
   })
   .catch((err) => {
