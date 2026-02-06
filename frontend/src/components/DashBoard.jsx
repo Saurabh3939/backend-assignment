@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import API from "../api";
+import API from "../api/axios";
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
@@ -7,6 +7,7 @@ const Dashboard = () => {
   const [title, setTitle] = useState("");
   const navigate = useNavigate();
   const role = localStorage.getItem("role");
+  const token = localStorage.getItem("token");
 
   const fetchTasks = async () => {
     try {
@@ -18,7 +19,11 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    fetchTasks();
+    if (!token) {
+      navigate("/login");
+    } else {
+      fetchTasks();
+    }
   }, []);
 
   const addTask = async (e) => {

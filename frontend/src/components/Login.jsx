@@ -3,11 +3,12 @@ import API from "../api/axios";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
+    e.preventDefault();
     try {
       const { data } = await API.post("/auth/login", { email, password });
       localStorage.setItem("token", data.token);
@@ -31,6 +32,7 @@ const Login = () => {
         <input
           type='password'
           placeholder='password'
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
@@ -38,7 +40,16 @@ const Login = () => {
       </form>
       <p>
         Don't Have An Account ?{" "}
-        <span onClick={() => navigate("/register")}>Register</span>
+        <span
+          onClick={() => navigate("/register")}
+          style={{
+            cursor: "pointer",
+            color: "blue",
+            textDecoration: "underline",
+          }}
+        >
+          Register
+        </span>
       </p>
     </div>
   );

@@ -47,7 +47,7 @@ const Register = () => {
           required
         />
         <select
-          onChange={(e) => formData({ ...formData, role: e.target.value })}
+          onChange={(e) => setFormData({ ...formData, role: e.target.value })}
         >
           <option value='user'>User</option>
           <option value='admin'>Admin</option>

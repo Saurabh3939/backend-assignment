@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 exports.register = async (req, res) => {
+  console.log("Data received from frontend:", req.body);
   const { name, email, password, role } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -15,6 +16,7 @@ exports.register = async (req, res) => {
     });
     res.status(200).json("User Registered SuccessFully");
   } catch (error) {
+    console.log(error);
     res.status(400).json({ error: error.message });
   }
 };
@@ -28,7 +30,7 @@ exports.login = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "1d" },
     );
-    res.json({ token, role: user.role });
+    res.json({ token, role: user.role, name: user.name });
   } else {
     res.status(401).json({ message: "Inavlid Crendentials" });
   }
