@@ -5,7 +5,13 @@ import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [status, setStatus] = useState("Pending");
   const navigate = useNavigate();
+
+  const storedUser = localStorage.getItem("user");
+  const user = storedUser ? JSON.parse(storedUser) : null;
+
   const role = localStorage.getItem("role");
   const token = localStorage.getItem("token");
 
@@ -28,7 +34,7 @@ const Dashboard = () => {
 
   const addTask = async (e) => {
     e.preventDefault();
-    await API.post("/tasks", { title });
+    await API.post("/tasks", { title, description, status });
     setTitle("");
     fetchTasks();
   };
@@ -38,10 +44,16 @@ const Dashboard = () => {
     fetchTasks();
   };
 
-  const logout = () => {
-    localStorage.clear();
+  const logout = async () => {
+    try {
+      await API.post("/auth/logout");
+    } catch (err) {
+      console.error(err);
+    }
+    localStorage.removeItem("user");
     navigate("/login");
   };
+  if (!user) return null;
 
   return (
     <div className='dashboard'>
@@ -65,7 +77,11 @@ const Dashboard = () => {
         <div className='task-list'>
           {tasks.map((task) => (
             <div key={task._id} className='task-item'>
-              <span>{task.title}</span>
+              <div>
+                <h4>{task.title}</h4>
+                <p>{task.description}</p>
+                <small>Status: {task.status}</small>
+              </div>
               {role === "admin" && (
                 <button
                   onClick={() => deleteTask(task._id)}

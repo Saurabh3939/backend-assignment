@@ -11,12 +11,11 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await API.post("/auth/login", { email, password });
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("role", data.role);
-      localStorage.setItem("userName", data.name);
+      const userData = { name: data.name, role: data.role };
+      localStorage.setItem("user", JSON.stringify(userData));
       navigate("/dashboard");
     } catch (err) {
-      alert("Invalid Crenditials");
+      alert("Invalid Credentials");
     }
   };
   return (
