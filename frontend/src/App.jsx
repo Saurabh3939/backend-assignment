@@ -10,8 +10,8 @@ import Register from "./components/Register";
 import Dashboard from "./components/DashBoard";
 
 const ProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem("token");
-  return token ? children : <Navigate to='/login' />;
+  const user = localStorage.getItem("token");
+  return user ? children : <Navigate to='/login' />;
 };
 
 function App() {
