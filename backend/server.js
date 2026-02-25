@@ -12,7 +12,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://backend-assignment-1-he1n.onrender.com",
+    origin: [
+      "https://backend-assignment-1-he1n.onrender.com",
+      "http://localhost:5173",
+    ],
+
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   }),
